@@ -24,7 +24,7 @@ pipeline {
 
         stage('Build Images') {
             steps {
-                dir('DGNV-PROJECT/DGNV-PROJECT/dgnv-government-platform') {
+                dir('dgnv-government-platform') {
                     bat 'docker compose build --pull'
                 }
             }
@@ -32,7 +32,7 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                dir('DGNV-PROJECT/DGNV-PROJECT/dgnv-government-platform') {
+                dir('dgnv-government-platform') {
                     bat 'docker compose down'
                     bat 'docker compose up -d'
                 }
@@ -41,7 +41,7 @@ pipeline {
 
         stage('Show Services') {
             steps {
-                dir('DGNV-PROJECT/DGNV-PROJECT/dgnv-government-platform') {
+                dir('dgnv-government-platform') {
                     bat 'docker compose ps'
                 }
             }
@@ -58,7 +58,7 @@ pipeline {
 
     post {
         failure {
-            dir('DGNV-PROJECT/DGNV-PROJECT/dgnv-government-platform') {
+            dir('dgnv-government-platform') {
                 bat 'docker compose ps'
                 bat 'docker compose logs --tail=100'
             }
